@@ -27,19 +27,30 @@ package com.iluwatar.execute.around;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import lombok.var;
 
 /**
- * The Execute Around idiom specifies executable code before and after a method. Typically
- * the idiom is used when the API has methods to be executed in pairs, such as resource
+ * The Execute Around idiom specifies executable code before and after a method.
+ * Typically
+ * the idiom is used when the API has methods to be executed in pairs, such as
+ * resource
  * allocation/deallocation or lock acquisition/release.
  *
- * <p>In this example, we have {@link SimpleFileWriter} class that opens and closes the file for
- * the user. The user specifies only what to do with the file by providing the {@link
+ * <p>
+ * In this example, we have {@link SimpleFileWriter} class that opens and closes
+ * the file for
+ * the user. The user specifies only what to do with the file by providing the
+ * {@link
  * FileWriterAction} implementation.
+ * </p>
  */
-@Slf4j
 public class App {
+
+  static Logger logger = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -55,7 +66,7 @@ public class App {
     // print the file contents
     try (var scanner = new Scanner(new File("testfile.txt"))) {
       while (scanner.hasNextLine()) {
-        LOGGER.info(scanner.nextLine());
+        logger.info(scanner.nextLine());
       }
     }
   }
